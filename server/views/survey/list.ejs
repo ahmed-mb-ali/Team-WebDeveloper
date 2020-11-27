@@ -1,0 +1,104 @@
+
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+
+<%- include ../partials/welcome_message.ejs %>
+  
+
+  <!-- Main Content -->
+  <main class="inner">
+    <div class="row">
+        <div class="offset col-12">
+            
+
+            <% if(typeof displayName == 'string' && displayName) { %>
+                <a href="/survey-list/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add a Question</a><br>
+            <% } %>
+            <br>
+            <table class="table table-bordered table-striped table-hover">
+                <!-- Header Row-->
+                <tr class="d-flex">
+                    <% if(typeof displayName == 'string' && displayName) { %>
+                        <th class="text-center col-4">Question</th>
+                        <th class="text-center col-1">Option1</th>
+                        <th class="text-center col-1">Option2</th>
+                        <th class="text-center col-1">Option3</th>
+                        <th class="text-center col-1">Option4</th>
+                        <th class="text-center col-2"></th>
+                        <th class="text-center col-2"></th>
+
+                    <% } else { %>
+                      <th class="text-center col-4">Question</th>
+                      <th class="text-center col-2">Option1</th>
+                      <th class="text-center col-2">Option2</th>
+                      <th class="text-center col-2">Option3</th>
+                      <th class="text-center col-2">Option4</th>
+                        
+                    <% } %>
+                </tr>
+
+                <!-- Repeated Template Row -->
+                <% for(let count = 0; count < ContactList.length; count++) {%>
+                    <tr class="d-flex">
+                        <% if(typeof displayName == 'string' && displayName) { %>
+                            <td class="text-center col-4"><%= ContactList[count].question %></td>
+                            <td class="text-center col-1"><%= ContactList[count].option1 %>  
+                              <input type="radio" id="option1" name="question1">
+                            </td>
+                            <td class="text-center col-1"><%= ContactList[count].option2 %>                        
+                              <input type="radio" id="option2" name="question1"></td>
+                          </td>
+                            <td class="text-center col-1"><%= ContactList[count].option3 %>
+                              <input type="radio" id="option3" name="question1">
+                            </td>
+                            <td class="text-center col-1"><%= ContactList[count].option4 %>
+                              <input type="radio" id="option4" name="question1">
+                            </td>
+
+
+
+                            <td class="text-center col-2">
+                                <a href="/survey-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-pencil-alt"></i>Update</a>
+                            </td>
+                            <td class="text-center col-2">
+                                <a href="/survey-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> Delete</a>
+                            </td>
+                        <% } else { %>
+                            <td class="text-center col-4"><%= ContactList[count].question %></td>
+                            <td class="text-center col-2"><%= ContactList[count].option1 %>
+                              <input type="radio" id="option1" name="question1">
+                            </td>
+                            <td class="text-center col-2"><%= ContactList[count].option2 %>
+                              <input type="radio" id="option2" name="question1"></td>
+                            </td>
+                            <td class="text-center col-2"><%= ContactList[count].option3 %>
+                              <input type="radio" id="option3" name="question1">
+                            </td>
+                            <td class="text-center col-2"><%= ContactList[count].option4 %>
+                              <input type="radio" id="option4" name="question1">
+                            </td>
+
+                            
+                            
+                            
+                            
+                        <% } %>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
+  </main>
+
+
+<%- include ../partials/bottom_nav.ejs %>
+
+<%- include ../partials/footer.ejs %>
+ 
+
+  
+
